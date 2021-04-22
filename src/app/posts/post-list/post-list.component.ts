@@ -1,5 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
+
 import { Post } from '../post.model';
 import { PostsService } from '../posts.service';
 
@@ -10,8 +11,8 @@ import { PostsService } from '../posts.service';
 })
 export class PostListComponent implements OnInit, OnDestroy {
   posts: Post[] = [];
-  private postsSub: Subscription;
   isLoading = false;
+  private postsSub: Subscription;
 
   constructor(public postsService: PostsService) {}
 
@@ -19,7 +20,7 @@ export class PostListComponent implements OnInit, OnDestroy {
     this.isLoading = true;
     this.postsService.getPosts();
     this.postsSub = this.postsService
-      .getPostUpdateListner()
+      .getPostUpdateListener()
       .subscribe((posts: Post[]) => {
         this.isLoading = false;
         this.posts = posts;

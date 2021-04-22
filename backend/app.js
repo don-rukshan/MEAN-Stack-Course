@@ -1,10 +1,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const { v4: uuidv4 } = require("uuid");
+const mongoose = require("mongoose");
 
 const postsRoutes = require("./routes/posts");
-
-const mongoose = require("mongoose");
 
 const app = express();
 
@@ -33,6 +31,6 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("api/posts", postsRoutes);
+app.use("/api/posts", postsRoutes);
 
 module.exports = app;
